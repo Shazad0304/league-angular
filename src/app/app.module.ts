@@ -10,6 +10,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { TeampickerService } from './teampicker.service';
+import { AuthguardService } from './authguard.service';
+import { LoginguardService } from './loginguard.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { TeampickerService } from './teampicker.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule // firestore
   ],
-  providers: [TeampickerService],
+  providers: [TeampickerService,AuthguardService,LoginguardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

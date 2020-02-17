@@ -45,10 +45,9 @@
                 </li>
             </ul>
             <form class="form-inline">
-                <input class="form-control mr-sm-2 my-1 form-control-sm" type="text" placeholder="Email">
-                <input class="form-control mr-sm-2 my-1 form-control-sm" type="password" placeholder="Password">
-                <button class="btn btn-outline-light my-2 my-sm-0 btn-sm" type="submit">Login</button>&nbsp;
-                <a href="register.html" class="btn btn-outline-light my-2 my-sm-0 btn-sm" role="button">Register</a>
+                
+                <button [disabled]='this.check' (click)='redirect()' class="btn btn-outline-light my-2 my-sm-0 btn-sm" type="submit">{{title}}</button>&nbsp;
+                <button [hidden]='!this.check' (click)=signout() class="btn btn-outline-light my-2 my-sm-0 btn-sm">Signout</button>
                 <!--iska alag bnana he-->
             </form>
         </div>

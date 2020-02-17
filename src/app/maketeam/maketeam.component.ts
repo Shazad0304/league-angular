@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeampickerService } from '../teampicker.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-maketeam',
@@ -8,7 +9,9 @@ import { TeampickerService } from '../teampicker.service';
 })
 export class MaketeamComponent implements OnInit {
 
+  user = '';
   disable = false;
+  savedisable = true;
   players = [];
   playersname =[];
   selectedTeam = [];
@@ -17,7 +20,7 @@ export class MaketeamComponent implements OnInit {
   keeper = 0;
   all = 0;
   checkduplicate = false;
-  constructor(private getter:TeampickerService) { }
+  constructor(private getter:TeampickerService,private rout:Router) { }
 
 
   ngOnInit() {
@@ -38,30 +41,35 @@ export class MaketeamComponent implements OnInit {
 
     }
   }
-
+//list khali na ho and duplicate na ho
   add(type1,name1){
-    for(let i of this.selectedTeam){
-      if(i.name == name1){
-        alert('you already selected that player');
-        this.checkduplicate = true;
-      }
-      else{this.checkduplicate = false}
-    }
-    if(!this.checkduplicate){
-    this.selectedTeam.push({
-      name: name1,
-      type: type1
-    });}
-    if(this.selectedTeam.length > 10){this.disable = true}
 
+    if(this.selectedTeam.find(x => x.name == name1)){
+      alert('you already select this Player');
+    }
+    else{
+    if(type1 == '' || name1 == ''){
+      alert('all fields are mandatory');
+    }
+    else{
+      this.selectedTeam.push({
+        name: name1,
+        type: type1});
+    
+    if(this.selectedTeam.length > 10){this.disable = true;this.savedisable = false}
+
+  }
+}
   }
 
   del(i){
     this.selectedTeam.splice(i,1);
     this.disable = false;
+    this.savedisable = true;
   }
 
   save(){
+    this.user = localStorage.getItem('verify');
     for(let i of this.selectedTeam){
       if(i.type == 'Batsman'){this.batsman = this.batsman + 1}
       if(i.type == 'Bowler'){this.bowler = this.bowler + 1}
@@ -70,10 +78,18 @@ export class MaketeamComponent implements OnInit {
 
     }
 
-    if(this.batsman > 4 || this.bowler > 4 || this.keeper > 2|| this.all > 1){
-        alert('Please select exact 4 batsman,4 bowler,2 keeper,1 AllRounder')
+    if(this.batsman > 4 || this.bowler > 4 || this.keeper > 1|| this.all > 2){
+        alert('Please select exact 4 batsman,4 bowler,1 keeper,2 AllRounder')
     }
-    else{}
+    else{
+      this.getter.savedata(this.user,this.selectedTeam);
+      
+      this.getter.deluser(this.user);
+      alert('Team Added')
+      localStorage.clear();
+      this.rout.navigate(['home']);
+
+    }
   }
 
 

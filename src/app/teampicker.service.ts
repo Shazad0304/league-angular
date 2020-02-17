@@ -12,4 +12,19 @@ export class TeampickerService {
    getplayers(team){
      return this.fire.collection('/'+team).snapshotChanges();
    }
+
+   getusers(){
+     return this.fire.collection('/users').snapshotChanges();
+   }
+
+   savedata(name,list){
+     for(let i in list){
+      this.fire.collection('/'+name).doc(i.toString()).set(list[i])
+     }
+      
+   }
+
+   deluser(name){
+     this.fire.collection('/users').doc(name).delete();
+   }
 }
