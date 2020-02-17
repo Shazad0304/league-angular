@@ -1,0 +1,72 @@
+
+
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="login-form">
+                   
+                        <h2 class="text-center">Add Team</h2>
+                        <label for="exampleInputPassword1">Select Team</label>
+                <select (change)='get(team.value)' class="custom-select custom-select-sm" #team>
+                    <option selected>Select Team</option>
+                    <option>Islamabad United</option>
+                    <option>Peshawar Zalmi</option>
+                    <option>Multan Sultans</option>
+                    <option>Quetta Gladiators</option>
+                    <option>Karachi Kings</option>
+                    <option>Lahore Qalandars</option>
+                </select>
+                     <p></p>
+                     <label for="exampleInputPassword1">Select Type</label>
+                     <select (change)='getplayername(type.value)' class="custom-select custom-select-sm" #type>
+                        <option selected>Select Type</option>
+                        <option>Batsman</option>
+                        <option>Bowler</option>
+                        <option>Keeper</option>
+                        <option>AllRounder</option>
+                    </select>
+                        <p></p>
+                        <label for="exampleInputPassword1">Select Player</label>
+                        <select class="custom-select custom-select-sm" #name>
+                            <option *ngFor='let item of this.playersname'>{{item.name}}</option>
+                        </select>
+                        <p></p>
+                        <button [disabled]='disable' (click)='add(type.value,name.value)' class="btn btn-primary">Add</button>
+                
+                    </div>
+              </div>
+              <div class="col">
+                  <div class="login-form">
+                   
+                <form>
+                    <h2 class="text-center">Your Team</h2>
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Player</th>
+                            <th scope="col">Type</th>
+                           
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor='let team of this.selectedTeam;let i = index'>
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{team.name}}</td>
+                            <td>{{team.type}}</td>
+                            <td><span (click)=del(i)>X</span></td>
+                            
+                          </tr>
+                          </tbody>
+                          </table>
+                          <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>Info!</strong>Please see how to play and Please select exact 4 batsman,4 bowler,2 keeper,1 AllRounder.
+              </div>
+       
