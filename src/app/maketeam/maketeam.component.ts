@@ -101,7 +101,7 @@ export class MaketeamComponent implements OnInit {
     else{
       if(confirm("Are you sure? it can't be undone.")){
       this.getter.savedata(this.user,this.selectedTeam);
-      
+      this.getter.saveParticipant(this.user);
       this.getter.deluser(this.user);
       alert('Team Added')
       localStorage.clear();

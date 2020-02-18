@@ -11,16 +11,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private data:TeampickerService,private router:Router) { }
   users=[];
+  participants = [];
   checked = true;
 
   ngOnInit() {
 
     this.data.getusers().subscribe(x => this.users = x.map(o => o.payload.doc.data()));
+    this.data.getParticipants().subscribe(x => this.participants = x.map(o => o.payload.doc.id));
     
   }
 
   check(user,pass){
-    console.log(this.users);
+    if(this.participants.find(x => x == user)){alert('you already created the team, Your team will be shown in leaderboard after 1st match');}
+    else{
     for(let users of this.users){
       if(users.name == user && users.pass == pass){
         localStorage.setItem('verify',user);
@@ -32,5 +35,5 @@ export class LoginComponent implements OnInit {
     if(this.checked){alert('Invalid Credentials')}
     
   }
-
+  }
 }

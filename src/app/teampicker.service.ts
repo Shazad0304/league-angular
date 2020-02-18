@@ -27,4 +27,12 @@ export class TeampickerService {
    deluser(name){
      this.fire.collection('/users').doc(name).delete();
    }
+
+   saveParticipant(name){
+    this.fire.collection('/participants').doc(name).set({teamAdded:true});
+   }
+
+   getParticipants(){
+     return this.fire.collection('/participants').snapshotChanges();
+   }
 }

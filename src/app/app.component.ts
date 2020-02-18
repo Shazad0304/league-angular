@@ -25,6 +25,7 @@ export class AppComponent {
   }
 
   redirect(){
+  
     this.rout.navigate(['login']);
   }
 
