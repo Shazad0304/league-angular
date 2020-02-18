@@ -30,8 +30,12 @@
                         <select class="custom-select custom-select-sm" #name>
                             <option *ngFor='let item of this.playersname'>{{item.name}}</option>
                         </select>
+                        <div class="form-check">
+                          <input [disabled]='capcheck' type="checkbox" class="form-check-input" id="exampleCheck1" #cap>
+                          <label class="form-check-label" for="exampleCheck1">Make Captain</label>
+                        </div>
                         <p></p>
-                        <button [disabled]='disable' (click)='add(type.value,name.value)' class="btn btn-primary">Add</button>
+                        <button [disabled]='disable' (click)='add(type.value,name.value,cap.checked)' class="btn btn-primary">Add</button>
                 
                     </div>
               </div>
@@ -46,14 +50,18 @@
                             <th scope="col">#</th>
                             <th scope="col">Player</th>
                             <th scope="col">Type</th>
+                            <th scope="col">Delete</th>
+                          
                            
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor='let team of this.selectedTeam;let i = index'>
                             <th scope="row">{{i+1}}</th>
-                            <td>{{team.name}}</td>
+                            <td>{{team.name}} {{team.captain}}</td>
+    
                             <td>{{team.type}}</td>
+                            
                             <td><span (click)=del(i)>X</span></td>
                             
                           </tr>

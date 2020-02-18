@@ -9,6 +9,7 @@ import { Router} from '@angular/router';
 })
 export class MaketeamComponent implements OnInit {
 
+  capcheck = false;
   user = '';
   disable = false;
   savedisable = true;
@@ -42,8 +43,8 @@ export class MaketeamComponent implements OnInit {
     }
   }
 //list khali na ho and duplicate na ho
-  add(type1,name1){
-
+  add(type1,name1,cap){
+    
     if(this.selectedTeam.find(x => x.name == name1)){
       alert('you already select this Player');
     }
@@ -52,9 +53,20 @@ export class MaketeamComponent implements OnInit {
       alert('all fields are mandatory');
     }
     else{
+      if(cap == true && this.capcheck != true){
+        this.capcheck = true;
       this.selectedTeam.push({
         name: name1,
-        type: type1});
+        type: type1,
+        captain: 'C'
+      });
+    }
+    else{
+      this.selectedTeam.push({
+        name: name1,
+        type: type1,
+      }); 
+    }
     
     if(this.selectedTeam.length > 10){this.disable = true;this.savedisable = false}
 
@@ -63,6 +75,7 @@ export class MaketeamComponent implements OnInit {
   }
 
   del(i){
+    if(this.selectedTeam[i].captain){this.capcheck = false}
     this.selectedTeam.splice(i,1);
     this.disable = false;
     this.savedisable = true;
@@ -77,8 +90,8 @@ export class MaketeamComponent implements OnInit {
       if(i.type == 'AllRounder'){this.all = this.all + 1}
 
     }
-
-    if(this.batsman > 4 || this.bowler > 4 || this.keeper > 1|| this.all > 2){
+    if(this.capcheck == false){alert('please select a Captain')}
+    else if(this.batsman > 4 || this.bowler > 4 || this.keeper > 1|| this.all > 2){
         alert('Please select exact 4 batsman,4 bowler,1 keeper,2 AllRounder')
     }
     else{
