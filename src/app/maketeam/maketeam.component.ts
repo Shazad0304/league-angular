@@ -9,6 +9,7 @@ import { Router} from '@angular/router';
 })
 export class MaketeamComponent implements OnInit {
 
+  
   capcheck = false;
   user = '';
   disable = false;
@@ -27,7 +28,9 @@ export class MaketeamComponent implements OnInit {
   ngOnInit() {
   }
 
-  get(team){
+  get(team,type){
+    type.value = 'Select Type'; //reseting
+    
     this.playersname = [];
     this.getter.getplayers(team).subscribe(x => this.players = x.map(o => o.payload.doc.data()));
     console.log(this.players);
@@ -53,8 +56,9 @@ export class MaketeamComponent implements OnInit {
       alert('all fields are mandatory');
     }
     else{
-      if(cap == true && this.capcheck != true){
+      if(cap.checked == true && this.capcheck != true){
         this.capcheck = true;
+        cap.checked = false;
       this.selectedTeam.push({
         name: name1,
         type: type1,
@@ -92,16 +96,17 @@ export class MaketeamComponent implements OnInit {
     }
     if(this.capcheck == false){alert('please select a Captain')}
     else if(this.batsman > 4 || this.bowler > 4 || this.keeper > 1|| this.all > 2){
-        alert('Please select exact 4 batsman,4 bowler,1 keeper,2 AllRounder')
+        alert('Please select 4 batsman,4 bowler,1 keeper,2 AllRounder and choose 1 Captain')
     }
     else{
+      if(confirm("Are you sure? it can't be undone.")){
       this.getter.savedata(this.user,this.selectedTeam);
       
       this.getter.deluser(this.user);
       alert('Team Added')
       localStorage.clear();
       this.rout.navigate(['home']);
-
+      }
     }
   }
 

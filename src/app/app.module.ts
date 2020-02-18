@@ -12,13 +12,17 @@ import { environment } from 'src/environments/environment';
 import { TeampickerService } from './teampicker.service';
 import { AuthguardService } from './authguard.service';
 import { LoginguardService } from './loginguard.service';
+import { RulesComponent } from './rules/rules.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    MaketeamComponent
+    MaketeamComponent,
+    RulesComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

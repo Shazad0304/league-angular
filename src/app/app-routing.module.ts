@@ -5,13 +5,18 @@ import { LoginComponent } from './login/login.component';
 import { MaketeamComponent } from './maketeam/maketeam.component';
 import { AuthguardService } from './authguard.service';
 import { LoginguardService } from './loginguard.service';
+import { RulesComponent } from './rules/rules.component';
+import { AboutComponent } from './about/about.component';
 
 
 const routes: Routes = [
   {path: '',redirectTo: 'home',pathMatch: 'full'},
   {path: 'home',component: HomeComponent},
   {path: 'login',component: LoginComponent,canActivate:[LoginguardService]},
-  {path: 'maketeam',component: MaketeamComponent,canActivate: [AuthguardService]}
+  {path: 'maketeam',component: MaketeamComponent,canActivate: [AuthguardService]},
+  {path: 'rules',component:RulesComponent},
+  {path: 'about',component:AboutComponent},
+  {path: '**',component: HomeComponent}
 ];
 
 @NgModule({

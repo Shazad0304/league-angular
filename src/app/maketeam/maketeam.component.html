@@ -1,5 +1,7 @@
-
-
+<p></p>
+ <div class="alert alert-info">
+  <strong>Info!</strong> Please see how to play and Please select 4 batsman,4 bowler,1 keeper,2 AllRounder and choose 1 Captain.
+</div>
           <div class="container">
             <div class="row">
               <div class="col">
@@ -7,7 +9,7 @@
                    
                         <h2 class="text-center">Add Team</h2>
                         <label for="exampleInputPassword1">Select Team</label>
-                <select (change)='get(team.value)' class="custom-select custom-select-sm" #team>
+                <select (change)='get(team.value,type)' class="custom-select custom-select-sm" #team>
                     <option selected>Select Team</option>
                     <option>Islamabad United</option>
                     <option>Peshawar Zalmi</option>
@@ -18,7 +20,7 @@
                 </select>
                      <p></p>
                      <label for="exampleInputPassword1">Select Type</label>
-                     <select (change)='getplayername(type.value)' class="custom-select custom-select-sm" #type>
+                     <select (change)='getplayername(type.value)' class="custom-select custom-select-sm" id='typ' #type>
                         <option selected>Select Type</option>
                         <option>Batsman</option>
                         <option>Bowler</option>
@@ -30,12 +32,12 @@
                         <select class="custom-select custom-select-sm" #name>
                             <option *ngFor='let item of this.playersname'>{{item.name}}</option>
                         </select>
-                        <div class="form-check">
-                          <input [disabled]='capcheck' type="checkbox" class="form-check-input" id="exampleCheck1" #cap>
+                        <div [hidden]='capcheck' class="form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1" #cap>
                           <label class="form-check-label" for="exampleCheck1">Make Captain</label>
                         </div>
                         <p></p>
-                        <button [disabled]='disable' (click)='add(type.value,name.value,cap.checked)' class="btn btn-primary">Add</button>
+                        <button [disabled]='disable' (click)='add(type.value,name.value,cap)' class="btn btn-primary">Add</button>
                 
                     </div>
               </div>
@@ -50,7 +52,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Player</th>
                             <th scope="col">Type</th>
-                            <th scope="col">Delete</th>
+                            
                           
                            
                           </tr>
@@ -62,7 +64,7 @@
     
                             <td>{{team.type}}</td>
                             
-                            <td><span (click)=del(i)>X</span></td>
+                            <td><img (click)='del(i)' style="width:25px;" alt="Responsive image" src='/assets/img/del.png'></td>
                             
                           </tr>
                           </tbody>
@@ -70,12 +72,12 @@
                           
                 </form>
                 <button [disabled]='savedisable' (click)='save()' class="btn btn-primary">Save</button>
+                <br/>
+                <br/>
             </div>
               </div>
             </div>
             </div>
+            <p></p>
 
-            <div class="alert alert-info">
-                <strong>Info!</strong>Please see how to play and Please select exact 4 batsman,4 bowler,2 keeper,1 AllRounder.
-              </div>
-       
+           
