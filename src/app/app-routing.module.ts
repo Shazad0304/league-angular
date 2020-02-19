@@ -7,6 +7,7 @@ import { AuthguardService } from './authguard.service';
 import { LoginguardService } from './loginguard.service';
 import { RulesComponent } from './rules/rules.component';
 import { AboutComponent } from './about/about.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'maketeam',component: MaketeamComponent,canActivate: [AuthguardService]},
   {path: 'rules',component:RulesComponent},
   {path: 'about',component:AboutComponent},
+  {path: 'leaderboard',component:LeaderboardComponent},
   {path: '**',component: HomeComponent}
 ];
 

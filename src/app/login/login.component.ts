@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('verify',user);
         this.checked = false;
         alert('Login successfull');
-        this.router.navigate(['maketeam']);
+        
       }
     }
     if(this.checked){alert('Invalid Credentials')}
