@@ -1,40 +1,58 @@
-<style>
-
-
-</style>
-
-<div class="table">
-    <div class="table-cell"  >
-      <ul class="leader" >
+<p></p>
+<div class="alert alert-info"  style="background-image:url(/assets/img/fan1.PNG;)">
+  <strong>Info!</strong> For points division please click how to play!
+</div>
+<div  style="background-image: url(/assets/img/fan1.PNG);background-repeat:no-repeat;background-attachment: fixed;background-position:center;height: 7030px;background-size: cover;" >
+<div class="table container">
+    <div class="table-cell">
+      <ul class="leader"  >
         <div id="decoration"></div>
         <div id="decoration2"></div>
         <div id="decoration3"></div>
-        <li *ngFor='let name of this.participants;let i=index' style="background-color:whitesmoke">
-          <span class="list_num">{{i+1}}</span>
-          <img data-toggle="modal" data-target="#exampleModalCenter" (click)='getTeam(name)'  src="https://lh6.googleusercontent.com/-566ZpvrYxRo/AAAAAAAAAAI/AAAAAAAAAAA/kZk-O1q__A0/s128-c-k/photo.jpg" />
-          <h2>{{name}}<span class="number">9,735</span></h2>
-
-
-          <button (click)='getTeam(name)' type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Launch demo modal
-          </button>
-          
-          <!-- Modal -->
-          
-        </li>
         
+        <li  style="background-color:dodgerblue">
+          <span class="list_num"><button type="button" class="btn btn-primary">#</button></span>
+    
+          <h2 style="color: aliceblue;"><button type="button" class="btn btn-primary">LeaderBoard</button><span class="number"><button type="button" class="btn btn-primary">Points</button>&nbsp;<button type="button" class="btn btn-primary">Teams</button></span></h2>
+        
+        </li>
+        <li *ngFor='let name of this.data.teams[0].data[0].data;let i=index' style="background-color:whitesmoke">
+          <span class="list_num">{{i+1}}</span>
+          <img data-toggle="modal" data-target="#exampleModalCenter" (click)='getTeam(name)'  src="https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png" />
+          <h2>{{name.name.name}}<span class="number">{{name.name.tp}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span (click)='getTeam(i)' class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter">Team</span></span></h2>
+        
+        </li>
+        <li></li>
+       
       </ul>
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div  class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+          <div style="background-color:whitesmoke;" class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">Team</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <h5 *ngFor='let player of this.team'>{{player.name}}</h5>
+              <table>
+              
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Player</th>
+                    <th scope="col">Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor='let player of this.pteam;let i = index'>
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{player.name}} {{player.captain}}</td>
+                    <td>{{player.type}}</td>
+                  </tr>
+                </tbody>
+             
+              </table>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -43,7 +61,7 @@
           </div>
         </div>
       </div>
-
+</div>
 
    
       
@@ -51,4 +69,5 @@
       <br/>
       <br/>
     </div>
-  </div>
+    </div>
+

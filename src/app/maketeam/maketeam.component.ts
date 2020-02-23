@@ -32,7 +32,7 @@ export class MaketeamComponent implements OnInit {
     type.value = 'Select Type'; //reseting
     
     this.playersname = [];
-    this.getter.getplayers(team).subscribe(x => this.players = x.map(o => o.payload.doc.data()));
+   // this.getter.getplayers().subscribe(x => this.players = x.map(o => o.payload.doc.data()));
     console.log(this.players);
   }
 
@@ -100,9 +100,9 @@ export class MaketeamComponent implements OnInit {
     }
     else{
       if(confirm("Are you sure? it can't be undone.")){
-      this.getter.savedata(this.user,this.selectedTeam);
-      this.getter.saveParticipant(this.user);
-      this.getter.deluser(this.user);
+     // this.getter.savedata(this.user,this.selectedTeam);
+     // this.getter.saveParticipant(this.user);
+     // this.getter.deluser(this.user);
       alert('Team Added')
       localStorage.clear();
       this.rout.navigate(['home']);

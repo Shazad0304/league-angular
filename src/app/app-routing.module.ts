@@ -8,6 +8,7 @@ import { LoginguardService } from './loginguard.service';
 import { RulesComponent } from './rules/rules.component';
 import { AboutComponent } from './about/about.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { AddpointsComponent } from './addpoints/addpoints.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'rules',component:RulesComponent},
   {path: 'about',component:AboutComponent},
   {path: 'leaderboard',component:LeaderboardComponent},
+  {path: 'addpoints',component:AddpointsComponent},
   {path: '**',component: HomeComponent}
 ];
 

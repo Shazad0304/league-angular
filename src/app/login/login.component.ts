@@ -16,12 +16,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    this.data.getusers().subscribe(x => this.users = x.map(o => o.payload.doc.data()));
-    this.data.getParticipants().subscribe(x => this.participants = x.map(o => o.payload.doc.id));
+    //this.data.getusers().subscribe(x => {this.users = x.map(o => o.payload.doc.data());console.log('*');});
+    //this.data.getParticipants().subscribe(x => {this.participants = x.map(o => o.payload.doc.id);console.log('*');});
     
   }
 
   check(user,pass){
+  
     if(this.participants.find(x => x == user)){alert('you already created the team, Your team will be shown in leaderboard after 1st match');}
     else{
     for(let users of this.users){

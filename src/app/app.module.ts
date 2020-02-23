@@ -15,6 +15,7 @@ import { LoginguardService } from './loginguard.service';
 import { RulesComponent } from './rules/rules.component';
 import { AboutComponent } from './about/about.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { AddpointsComponent } from './addpoints/addpoints.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     MaketeamComponent,
     RulesComponent,
     AboutComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    AddpointsComponent
   ],
   imports: [
     BrowserModule,
